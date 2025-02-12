@@ -5,15 +5,30 @@
   "author": "Firebase (https://firebase.google.com/)",
   "license": "Apache-2.0",
   "scripts": {
-    "bootstrap": "pnpm recursive install",
-    "lint": "pnpm recursive run lint --workspace-concurrency=4",
-    "test": "pnpm recursive run test --workspace-concurrency=4",
-    "compile": "pnpm recursive run compile --workspace-concurrency=4"
+    "bootstrap": "pnpm --recursive install",
+    "bootstrap-1st-gen": "pnpm --recursive --filter  \"./Node-1st-gen/**\" install",
+    "bootstrap-2nd-gen": "pnpm --recursive --filter  \"./Node/**\" install",
+    "lint-1st-gen": "pnpm --recursive --filter  \"./Node-1st-gen/**\" run lint",
+    "lint-2nd-gen": "pnpm --recursive --filter  \"./Node/**\" run lint",
+    "test-1st-gen": "pnpm --recursive --filter  \"./Node-1st-gen/**\" run test ",
+    "test-2nd-gen": "pnpm --recursive --filter  \"./Node/**\" run test ",
+    "compile-1st-gen": "pnpm --recursive --filter  \"./Node-1st-gen/**\" run compile ",
+    "compile-2nd-gen": "pnpm --recursive --filter  \"./Node/**\" run compile "
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "pnpm": "^6.4.0",
-    "typescript": "^3.8.2"
+    "eslint": "^8.57.1",
+    "pnpm": "^9.15.4",
+    "typescript": "^5.0.4"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@firebase/app-compat",
+        "@firebase/app-types"
+      ]
+    }
   }
 }
